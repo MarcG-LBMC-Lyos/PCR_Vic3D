@@ -2,7 +2,7 @@ import PCR_Vic3D_elem
 import os
 
 vic3d_data_path = [r".\Test_res\def_init_vic3d.csv", r".\Test_res\def_final_vic3d.csv"]
-ansys_cdb_path = r".\Test_res\mesh.cdb"
+ansys_cdb_path = r".\Test_res\mesh.cdb"  # UNZIP THE MESH FILE IN "TEST_RES" FOLDER BEFORE RUNNING THE SCRIPT
 ansys_deformations_path = [r".\Test_res\MaxPrincipalStrain_meshSurface.txt"]
 
 dirs = []
