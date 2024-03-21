@@ -1,9 +1,13 @@
 import PCR_Vic3D_elem
 import os
+import zipfile
 
 vic3d_data_path = [r".\Test_res\def_init_vic3d.csv", r".\Test_res\def_final_vic3d.csv"]
 ansys_cdb_path = r".\Test_res\mesh.cdb"  # UNZIP THE MESH FILE IN "TEST_RES" FOLDER BEFORE RUNNING THE SCRIPT
 ansys_deformations_path = [r".\Test_res\MaxPrincipalStrain_meshSurface.txt"]
+if not os.path.exists(ansys_cdb_path):
+    with zipfile.ZipFile(r".\Test_res\mesh.zip", 'r') as zip_ref:
+        zip_ref.extractall(r".\Test_res")
 
 dirs = []
 dirs.append({"vic3d": vic3d_data_path,
