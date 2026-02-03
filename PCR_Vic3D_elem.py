@@ -155,6 +155,7 @@ def pcr_vic3d(vic3d_node_coords_, ansys_node_coords_, vic3d_node_deformations_, 
     )
     p.add_mesh(pyvista.PolyData(vic3d_surf_nodes_coord[:, 1:]), color="b")
     p.add_mesh(pyvista.PolyData(ansys_surf_nodes_coord_matched[:, 1:]), color="r")
+    # p.show_grid()
     p.show(screenshot=save_img_path[:-4] + "_verif.png")
 
     #   Finding matching arg of Vic3D node with ansys node
