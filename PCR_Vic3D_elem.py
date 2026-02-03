@@ -215,11 +215,20 @@ def pcr_vic3d(vic3d_node_coords_, ansys_node_coords_, vic3d_node_deformations_, 
     ansys_vic_def_5 = np.percentile(ansys_vic_def, 5)
 
     #   Plot
-    plotter = pyvista.Plotter(off_screen=not show_plot)
+    plotter = pyvista.Plotter(shape=(1, 3), off_screen=not show_plot)
     plotter.subplot(0, 0)
-    plotter.add_mesh(whole_surf)
-    plotter.add_mesh(surf, scalars=diff_deformation, cmap='jet', clim=(-100, 100))
-    plotter.scalar_bar.SetTitle("%")
+    plotter.add_mesh(whole_surf, copy_mesh=True)
+    plotter.add_mesh(surf, scalars=ansys_defs[:, 1], clim=(ansys_vic_def_5, ansys_vic_def_95),
+                     cmap='jet', copy_mesh=True, scalar_bar_args={'title': 'Ansys strains (%)'})
+    plotter.subplot(0, 1)
+    plotter.add_mesh(whole_surf, copy_mesh=True)
+    plotter.add_mesh(surf, scalars=vic3d_defs[:, 1], clim=(ansys_vic_def_5, ansys_vic_def_95),
+                     cmap='jet', copy_mesh=True, scalar_bar_args={'title': 'Vic3D strains (%)'})
+    plotter.subplot(0, 2)
+    plotter.add_mesh(whole_surf, copy_mesh=True)
+    plotter.add_mesh(surf, scalars=diff_deformation, cmap='jet', clim=(-100, 100), copy_mesh=True, scalar_bar_args={'title': 'Strain diff. (% of Vic3D)'})
+
+    plotter.link_views()
     normal_vec = np.mean(np.transpose(pyvista.PolyData(points, cells).cell_normals), axis=1)
     center = np.mean(np.transpose(points), axis=1)
     max_radius = np.max(np.sqrt(np.sum((center - points) ** 2, axis=1)))
