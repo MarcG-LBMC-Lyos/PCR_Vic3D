@@ -270,7 +270,6 @@ def read_nodes_def_vic3d(path_vic3d_nodes_def, def_arg=9):
     x_arg = 0
     y_arg = 1
     z_arg = 2
-    def_arg = 12
     vic3d_node_coords = np.concatenate([np.array([range(len(raw_data))]).T, raw_data[:, [x_arg, y_arg, z_arg]]], axis=1)
     vic3d_node_deformations = np.concatenate([np.array([range(len(raw_data))]).T, raw_data[:, [def_arg]]], axis=1)
     # print(vic3d_node_coords[300], vic3d_node_deformations[300])
