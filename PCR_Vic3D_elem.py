@@ -276,6 +276,17 @@ def read_nodes_def_vic3d(path_vic3d_nodes_def, def_arg=9):
     # print(vic3d_node_coords[300], vic3d_node_deformations[300])
     return vic3d_node_coords, vic3d_node_deformations
 
+def read_sigma_vic3d(path_vic3d, sigma_arg=12):
+    with open(path_vic3d, 'r') as f:
+        raw_data = f.read().split("\n")
+    raw_data = list(map(lambda x: x.split(","), raw_data))
+    while raw_data[-1][0] == '':
+        raw_data.pop(-1)
+    raw_data = np.array(raw_data[1:]).astype(float)
+    sigma = raw_data[:, sigma_arg]
+    return sigma
+
+
 
 def read_nodes_coord_ansys(path_ansys_cdb):
     """
