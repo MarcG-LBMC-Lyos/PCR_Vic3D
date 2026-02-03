@@ -209,6 +209,11 @@ def pcr_vic3d(vic3d_node_coords_, ansys_node_coords_, vic3d_node_deformations_, 
     whole_cells_ravel = whole_cells.ravel()
     whole_surf = pyvista.UnstructuredGrid(whole_cells_ravel, whole_celltypes, whole_points)
 
+    # Get 5th and 95th percentile of ansys and vic3d deformations (min and max)
+    ansys_vic_def = np.concatenate([ansys_defs[:, 1], vic3d_defs[:, 1]])
+    ansys_vic_def_95 = np.percentile(ansys_vic_def, 95)
+    ansys_vic_def_5 = np.percentile(ansys_vic_def, 5)
+
     #   Plot
     plotter = pyvista.Plotter(off_screen=not show_plot)
     plotter.subplot(0, 0)
