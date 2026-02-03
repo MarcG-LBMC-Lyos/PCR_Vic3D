@@ -309,7 +309,23 @@ def read_nodes_coord_ansys(path_ansys_cdb):
     nb_id = 3
     nb_coord = 3
     raw_data = raw_data[2:]
-    ansys_node_coords = list(map(lambda x: [int(x[0:node_id_len]), *[float(x[nb_id*node_id_len + i*node_coord_len:nb_id*node_id_len + (i+1)*node_coord_len]) for i in range(nb_coord)]], raw_data))
+    ansys_node_coords = []
+    for idx, x in enumerate(raw_data):
+        try:
+            node_id = int(x[0:node_id_len])
+            coords = []
+            base = nb_id * node_id_len
+            for i in range(nb_coord):
+                start = base + i * node_coord_len
+                end = base + (i + 1) * node_coord_len
+                coord_str = x[start:end].strip()
+                if coord_str == '':
+                    coord_str = '0.0'
+                coords.append(float(coord_str))
+            ansys_node_coords.append([node_id, *coords])
+        except Exception as e:
+            print(f"Erreur parsing ligne {idx}: {repr(x)} -> {e}")
+            raise
     return ansys_node_coords
 
 
