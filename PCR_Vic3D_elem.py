@@ -190,7 +190,7 @@ def pcr_vic3d(vic3d_node_coords_, ansys_node_coords_, vic3d_node_deformations_, 
     # SAVE DATA
     wb = xlsxwriter.Workbook(save_deformation_path)
     sh = wb.add_worksheet()
-    header = ["Elem id", "Ansys def (%)", "Vic3D def (%)", "(Vic3D-Ansys)/Vic3D def (%)", "Averaging radius"]
+    header = ["Elem id", "Ansys def (%)", "Vic3D def (%)", "(Ansys - Vic3D)/Vic3D def (%)", "Averaging radius"]
     sh.write_row(0, 0, header)
     for i in range(len(ansys_defs)):
         try:
