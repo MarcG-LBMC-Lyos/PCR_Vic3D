@@ -184,7 +184,7 @@ def pcr_vic3d(vic3d_node_coords_, ansys_node_coords_, vic3d_node_deformations_, 
     vic3d_defs[:, 1] *= 100  # in %
     ansys_defs = np.array(ansys_defs)
     ansys_defs[:, 1] *= 100  # in %
-    diff_deformation = (vic3d_defs[:, 1] - ansys_defs[:, 1]) / vic3d_defs[:, 1] * 100  # Relative diff to vic3d
+    diff_deformation = (ansys_defs[:, 1] - vic3d_defs[:, 1]) / vic3d_defs[:, 1] * 100  # Relative diff to vic3d
     print("Mean def = ", np.mean(np.abs(diff_deformation)))
 
     # SAVE DATA
