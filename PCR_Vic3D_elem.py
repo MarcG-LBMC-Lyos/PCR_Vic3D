@@ -248,7 +248,7 @@ def pcr_vic3d(vic3d_node_coords_, ansys_node_coords_, vic3d_node_deformations_, 
 
 
 
-def read_nodes_def_vic3d(path_vic3d_nodes_def):
+def read_nodes_def_vic3d(path_vic3d_nodes_def, def_arg=9):
     """
     Read vic3d csv file with nodes coordinates (X, Y, Z) and Von Mises deformation.
     :param path_vic3d_nodes_def:
